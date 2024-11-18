@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'corsheaders',
     #my apps
     'questions',
-    'feed'
+    'feed',
+    'Clubs',
+    'Events'
 ]
 
 MIDDLEWARE = [
