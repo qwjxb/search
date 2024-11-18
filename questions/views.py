@@ -4,9 +4,18 @@
 from rest_framework.response import Response
 from rest_framework import generics, status
 from rest_framework.views import APIView
-from .models import Question, Answer, Faculty
-from .serializers import QuestionSerializer, AnswerSerializer, FacultySerializer
-#APIView, #ListAPIView, CreateAPIView, DeleteAPIView
+from .models import User, Question, Answer, Faculty
+from .serializers import UserSerializer, QuestionSerializer, AnswerSerializer, FacultySerializer
+from rest_framework import filters
+from django.contrib.auth.models import User
+
+
+class UserListView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['username', 'email', 'profile__profession']
+
 
 class QuestionList(generics.ListCreateAPIView):
     """

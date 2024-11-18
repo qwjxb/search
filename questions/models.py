@@ -1,7 +1,19 @@
 from django.db import models
 
-# Create your models here.
+class User(models.Model):  # или если вы используете расширенную модель, то AbstractUser
+    username = models.CharField(max_length=150, unique=True)
+    email = models.EmailField(unique=True)
+    # добавьте другие поля, если необходимо
 
+    def __str__(self):
+        return self.username
+
+class Profile(models.Model):
+    user = models.OneToOneField('User', on_delete=models.CASCADE, related_name='profile')
+    bio = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"Profile of {self.user.username}"
 
 class Faculty(models.Model): 
     college_uni = models.CharField(max_length=50)

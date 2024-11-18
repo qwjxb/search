@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import QuestionList, FacultyList,AnswerList
+from .views import UserListView, QuestionList, FacultyList, AnswerList 
 
 urlpatterns = [
+    path('users/', UserListView.as_view(), name='user-list'),
     path('questions/', QuestionList.as_view(), name='question-list'),
     path('questions/<int:question_id>/answers/', AnswerList.as_view(), name='question-list'),
 
